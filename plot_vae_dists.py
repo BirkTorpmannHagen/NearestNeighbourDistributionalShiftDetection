@@ -110,8 +110,6 @@ def sample_p_vals(dataloaders, fold_names, n_samples, test_samples):
     # samples = np.vstack((ind, ood))
     ind =samples[:len(dataloaders[0]), :]
     ood = samples[len(dataloaders[0]):, :]
-    print(ind.shape)
-    print(ood.shape)
     # k_n_indx = np.argsort(np.sum((np.expand_dims(np.mean(ood, axis=0),0)-ind)**2, axis=-1))[:32]
     k_n_indx = [np.argmin(np.sum((np.expand_dims(i,0)-ind)**2, axis=-1)) for i in ood]
     k_nearest = ind[k_n_indx]
@@ -133,23 +131,24 @@ def sample_p_vals(dataloaders, fold_names, n_samples, test_samples):
 def create_datasets_by_fold():
     ind_data_dict = check_dataset("folds/ind_fold.yaml")
     ind_train_path, ind_val_path = ind_data_dict['train'], ind_data_dict['val']
-    ind_dataloader, _, _ = create_dataloader(ind_train_path, 512,1,32, fold="ind")
+    ind_dataloader, _ = create_dataloader(ind_train_path, 512,1,32, fold="ind")
 
     ood_data_dict = check_dataset("folds/ood_fold.yaml")
     _, ood_val_path = ood_data_dict['train'], ood_data_dict['val']
     # ood_dataloader, _, _ = create_dataloader(ood_val_path, 512,1,32, fold="ood", shuffle=True)
-    ood_dataloader, _, _ = create_dataloader(ood_val_path, 512, 1, 32, fold="ood")
+    ood_dataloader, _= create_dataloader(ood_val_path, 512, 1, 32, fold="ood")
     # ood_dataloader = ind_dataloader
 
     test_data_dict = check_dataset("folds/test_fold.yaml")
     _, test_val_path = test_data_dict['train'], test_data_dict['val']
-    ood_dataloader, _, _ = create_dataloader(test_val_path, 512, 1, 32, fold="ood")
+    ood_dataloader, _ = create_dataloader(test_val_path, 512, 1, 32, fold="ood")
 
     return [ind_dataloader, ood_dataloader]
 
 
 
 if __name__ == '__main__':
+    # generate_plot(create_datasets_by_fold(), ["ind", "test_val"])
     datasets = create_datasets_by_fold()
     kn_acc=[]
     basic_acc=[]

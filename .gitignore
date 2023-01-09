@@ -127,3 +127,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#project
+*.npy
+*.pkl
+*.eps
+?anilla*/
+*.zip
+*.pt
+videos/
+NjordYolo/
+njord-yolo/
+old_runs/
+runs/
+rawdata/
+plots/
+logs/

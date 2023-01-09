@@ -1,0 +1,51 @@
+train: [
+]
+
+val: [
+    NjordYolo/02_hermes_dag14,
+    NjordYolo/03_hermes_dag6,
+    NjordYolo/04_hermes_dag6,
+    NjordYolo/04_hermes_dag17,
+    NjordYolo/11_hermes_dag34,
+]
+
+nc: 4
+
+names: [ "Boat", "Person", "Net", "Fish"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
