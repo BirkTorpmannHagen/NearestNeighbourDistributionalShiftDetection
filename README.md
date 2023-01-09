@@ -6,4 +6,3 @@ The code here is quite messy due to a fairy lengthy prototyping stage. A cleaner
 #Repeating experiments
 To repeat the distributional shift detection experiments, first train a VAE with run_vae.py, modify the path to the checkpoint in nndsd.py, then run nndsd.py.
 To repeat the generalizability experiments, run the desired train and val scripts in the scripts folder, passing the folds in folds/ as required. 
-
